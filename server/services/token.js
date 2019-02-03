@@ -1,16 +1,41 @@
 const jwt = require('jsonwebtoken');
-const secret = require('../config/secret');
+const config = require('../config/secret');
 
 exports.generateToken = (user) => {
+    const {_id, firstName, lastName, email} = user;
     const payload = {
-        id: user._id
+        id: _id,
+        firstName,
+        lastName,
+        email
     };
     
-    jwt.sign(payload, secret.secret, { expiresIn: 60 * 2 * 60}, (err, token) => {
+    jwt.sign(payload, config.secret, { expiresIn: 60 * 2 * 60}, (err, token) => {
         if (err) return err;       
         return token;
     });
 }
 
-// exports.verifyToken = (user) => {   
-// }
+exports.verifyToken = (req, res, next) => { 
+    const token = req.headers['x-access-token'];  
+    if (!token) {
+        return res.status(401).send({ 
+            auth: false,
+            success: false, 
+            message: 'No token provided' 
+        });
+    }
+
+    jwt.verify(token, config.secret, (err, decodedUser) => {
+        if (err) {
+			return res.status(500).send({ 
+                auth: false, 
+                success: false, 
+                message: 'Failed to authenticate token' 
+            });
+        }
+
+        req.user = decodedUser;
+		next();
+    });
+}

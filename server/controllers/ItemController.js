@@ -14,7 +14,8 @@ exports.addItem = (req, res) => {
     const newItem = new Item({
         title: req.body.title
     });
-    Item.save(newItem).then(item => res.json(item));
+    Item.save(newItem)
+        .then(item => res.json(item));
 }
 
 // DELETE api/items/:id

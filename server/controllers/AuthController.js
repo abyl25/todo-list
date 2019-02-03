@@ -5,7 +5,10 @@ const User = require('../models/User');
 exports.login = (req, res) => {
     const { email, password } = req.body;
     if (!email || !password) {
-        return res.status(400).json({message: 'email or password is empty'});
+        return res.status(400).json({
+            success: false,
+            message: 'email or password is empty'
+        });
     }
 
     User.findOne({email: email}, (err, user) => {
@@ -13,17 +16,27 @@ exports.login = (req, res) => {
             return res.status(500).send(err);
         }  
         if (!user) {
-            return res.status(404).send('User not found');
+            return res.status(404).json({
+                success: false,
+                message: 'User not found'
+            });
         }
         if (user) {
             const passwordIsValid = bcrypt.compareSync(password, user.password);
             if (!passwordIsValid) {
-                return res.status(401).json({ auth: false, token: null, message: 'Incorrect Password' })
+                return res.status(401).json({ 
+                    auth: false, 
+                    success: false,
+                    token: null, 
+                    message: 'Incorrect Password' 
+                })
             }
             //const token = _token.generateToken(user);
             res.status(200).json({ 
-                auth: true, 
-                token: _token.generateToken(user)
+                auth: true,
+                success: true,
+                token: _token.generateToken(user),
+                message: 'Logged in successfully'
             });
         }
     })
@@ -32,7 +45,10 @@ exports.login = (req, res) => {
 exports.signup = (req, res) => {
     const { email, password, firstName, lastName } = req.body;
     if (!email || !password || !firstName || !lastName) {
-        return res.status(400).json({message: 'Email, password, first name and last name should be provided'});
+        return res.status(400).json({
+            success: false,
+            message: 'Email, password, first name and last name should be provided'
+        });
     }
 
     User.findOne({email: email}, (err, user) => {
@@ -57,6 +73,7 @@ exports.signup = (req, res) => {
         User.save(newUser).then(user => {
             res.status(201).json({
                 auth: true,
+                success: true,
                 token: _token.generateToken(user),
                 message: 'Signed up successfully'
             })
