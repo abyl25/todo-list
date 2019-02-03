@@ -14,7 +14,7 @@ exports.addItem = (req, res) => {
     const newItem = new Item({
         title: req.body.title
     });
-    Item.save(newItem)
+    newItem.save()
         .then(item => res.json(item));
 }
 

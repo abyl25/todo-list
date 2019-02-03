@@ -10,10 +10,8 @@ exports.generateToken = (user) => {
         email
     };
     
-    jwt.sign(payload, config.secret, { expiresIn: 60 * 2 * 60}, (err, token) => {
-        if (err) return err;       
-        return token;
-    });
+    const token = jwt.sign(payload, config.secret, { expiresIn: 60 * 2 * 60});
+    return token;
 }
 
 exports.verifyToken = (req, res, next) => { 
@@ -25,7 +23,7 @@ exports.verifyToken = (req, res, next) => {
             message: 'No token provided' 
         });
     }
-
+    
     jwt.verify(token, config.secret, (err, decodedUser) => {
         if (err) {
 			return res.status(500).send({ 
