@@ -7,7 +7,8 @@ class TodoList extends Component {
         const items = this.props.items;
         return (
             <div className="items">
-                {items.map(item => <TodoItem key={item.id} item={item} deleteItem={this.props.deleteItem}/>)}
+                {items.map(item => <TodoItem key={item.id} item={item} 
+                    deleteItem={this.props.deleteItem} editItem={this.props.editItem}/>)}
             </div>
         );
     }

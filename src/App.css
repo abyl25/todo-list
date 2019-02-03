@@ -66,7 +66,7 @@ html {
 }
 
 .item {
-  /* border: 1px solid #ccc; */
+  position: relative;
   background-color: transparent;
   border-style: none;
   border-bottom: 1px solid #20a619;
@@ -74,7 +74,21 @@ html {
   padding: 10px; 
 }
 
+.edit-btn {
+  position: absolute;
+  right: 65px;
+  background: #49aee9;;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  /* float: right; */
+}
+
 .delete-btn {
+  position: absolute;
+  right: 0;
   /* background: #ff0000; */
   background: #bc0505;
   color: #fff;
@@ -82,5 +96,5 @@ html {
   padding: 5px 10px;
   border-radius: 4px;
   cursor: pointer;
-  float: right
+  /* float: right; */
 }

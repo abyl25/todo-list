@@ -7,7 +7,8 @@ class TodoItem extends Component {
         const { id, title } = this.props.item;
         return (
             <p className="item">{title} 
-                <button className="delete-btn" onClick={this.props.deleteItem.bind(this, id)}>X</button> 
+                <button className="edit-btn" onClick={this.props.editItem.bind(this, id)}>Edit</button>
+                <button className="delete-btn" onClick={this.props.deleteItem.bind(this, id)}>Delete</button> 
             </p>          
         );
     }
