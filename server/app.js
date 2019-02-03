@@ -1,14 +1,19 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const db = require('./config/db');  // MongoDB
-const itemRoutes = require('./routes/items');  // Routes
+// Routes
+const itemRoutes = require('./routes/items');  
+const authRoutes = require('./routes/auth');
+// MongoDB
+require('./config/db');  
 
 // Middlewares
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 // routes
 app.use('/api/items', itemRoutes);
+app.use('/api/auth', authRoutes);
 
 
 // API Index Route
@@ -21,7 +26,7 @@ app.get('/api', (req, res) => {
 // Server
 const port = 5000 || process.env.PORT;
 app.listen(port, () => 
-    console.log(`Node app started at port ${port}`)
+    console.log(`Node server started at port ${port}`)
 );
 
 module.exports = app;
