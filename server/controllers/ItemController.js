@@ -11,6 +11,8 @@ exports.getItems = (req, res) => {
 
 // POST api/items
 exports.addItem = (req, res) => {
+    console.log('req.body.title: ');
+    console.log(req.body.title);
     const newItem = new Item({
         title: req.body.title
     });
@@ -20,7 +22,14 @@ exports.addItem = (req, res) => {
 
 // DELETE api/items/:id
 exports.deleteItem = (req, res) => {
+    console.log('req.params.id: ');
+    console.log(req.params.id);
+    
     Item.findById(req.params.id)
-        .then(item => item.remove().then(() => res.json({success: true})))
+        .then(item => item.remove()
+        .then(() => res.json({
+            success: true, 
+            message: 'item deleted'
+        })))
         .catch(err => res.status(404).json({success: false}));
 }
