@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addItem } from '../actions/itemActions';
 import '../App.css';
 
 class AddItem extends Component {
@@ -14,25 +16,20 @@ class AddItem extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        const newItem = {
-            title: this.state.title
-        };
-        // this.props.addItem(this.state.title);
-        this.props.addItemAction(newItem);
-        this.setState({ 
-            title: '' 
-        });
+        const title = this.state.title.trim();
+        if (title) {
+            const newItem = {
+                title: title
+            };
+            
+            this.props.addItem(newItem);
+            this.setState({ 
+                title: '' 
+            });
+        }
     }
 
-    render() {
-        // const { editItemId, editItemTitle } = this.props;
-        // console.log("edit Item Title: " + editItemTitle);
-        // if (editItemTitle !== '') {
-        //     this.addInput.value = editItemTitle;
-        // }
-        // const value = this.state.title || editItemTitle;
-        // console.log("value: " + value);
-        
+    render() {    
         return (
             <div>
                 <h2 className="title">Add Item</h2>
@@ -47,4 +44,8 @@ class AddItem extends Component {
     }
 }
 
-export default AddItem;
+const mapDispatchToProps = {
+    addItem: addItem
+};
+
+export default connect(null, mapDispatchToProps)(AddItem);
