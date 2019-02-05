@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 import './navbar.css';
 
 function Navbar() {
@@ -7,11 +8,11 @@ function Navbar() {
         <div>           
             <nav> 
                 {/* eslint-disable  */}
-                <a id="logo" href="#">TodoList</a>
-                <a href="#">Main</a>
-                <a href="#">About</a>
-                {/* <a href="#" class="login">Log in</a>
-                <a href="#" class="signup">Sign up</a> */}
+                <Link id="logo" to="/" >TodoList</Link>
+                <Link to="/" >Main</Link>
+                <Link to="/about" >About</Link>              
+                <Link to="/login" >Log in</Link> 
+                <Link to="/signup" >Sign up</Link> 
                 {/* eslint-enable  */}
             </nav>
         </div>

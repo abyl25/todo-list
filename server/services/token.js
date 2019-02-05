@@ -15,8 +15,10 @@ exports.generateToken = (user) => {
 }
 
 exports.verifyToken = (req, res, next) => { 
-    const token = req.headers['x-access-token'];  
-    if (!token) {
+    // const token = req.headers['x-access-token']; 
+    const bearerHeader  = req.headers['Authorization']; 
+
+    if (!bearerHeader) {
         return res.status(401).send({ 
             auth: false,
             success: false, 
@@ -24,6 +26,9 @@ exports.verifyToken = (req, res, next) => {
         });
     }
     
+    const bearer = bearerHeader.split(' ');
+    const token = bearer[1];
+
     jwt.verify(token, config.secret, (err, decodedUser) => {
         if (err) {
 			return res.status(500).send({ 
