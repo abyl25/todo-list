@@ -1,16 +1,17 @@
 import { SET_USER } from '../actions/types';
 
 const initialState = {
-    authenticated: false,
+    isAuthenticated: false,
     user: {}
 };
 
 export default function (state = initialState, {type, payload}) {
     switch(type) {
         case SET_USER:
+            console.log('authReducer payload: ' + JSON.stringify(payload));
             return {
                 ...state,
-                authenticated: true, // authenticated: if (payload == {}) false;
+                isAuthenticated: true, // authenticated: if (payload == {}) false;
                 user: payload
             }; 
         default:

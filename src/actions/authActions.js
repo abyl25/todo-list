@@ -11,7 +11,9 @@ export const signupUser = (user) => dispatch => {
 
 export const loginUser = (user) => dispatch => {
     axios.post('/api/auth/login', user).then(res => {
-        const { token } = res.data;        
+        console.log('login action: res.data ' + JSON.stringify(res.data));
+        const { token } = res.data;    
+        console.log('login action: token: ' + token);    
         localStorage.setItem('token', token);       
         setAuthToken(token);    
         const decodedUser = jwtdecode(token);
