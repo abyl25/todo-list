@@ -9,6 +9,7 @@ import About from './components/About';
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import PrivateRoute from './components/auth/PrivateRoute';
+import { logoutUser } from './actions/authActions';
 import setAuthToken from './utils/setAuthToken';
 import store from './store';
 import './App.css';
@@ -21,6 +22,12 @@ if (token) {
     type: 'SET_USER',
     payload: decoded
   });
+
+  const curTime = Date.now()/1000;
+  if (decoded.exp < curTime) {
+    store.dispatch(logoutUser());
+    window.location.href = '/login';
+  }
 }
 
 class App extends Component {

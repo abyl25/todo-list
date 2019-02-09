@@ -1,4 +1,5 @@
 import { SET_USER } from '../actions/types';
+import isEmpty from '../utils/isEmpty';
 
 const initialState = {
     isAuthenticated: false,
@@ -11,7 +12,7 @@ export default function (state = initialState, {type, payload}) {
             console.log('authReducer payload: ' + JSON.stringify(payload));
             return {
                 ...state,
-                isAuthenticated: true, // authenticated: if (payload == {}) false;
+                isAuthenticated: !isEmpty(payload), 
                 user: payload
             }; 
         default:
