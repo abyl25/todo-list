@@ -28,6 +28,9 @@ class Login extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
+        const emailPattern = "^\\S+[A-Za-z]+@.$";
+        // const result = str.match(emailPattern);
+
         const user = {
             email: this.state.email,
             password: this.state.password
@@ -43,21 +46,22 @@ class Login extends Component {
 
     render() {
         return (
-            <div>
-                <h1>Login Page</h1>
-                <form onSubmit={this.onSubmit}>
-                    <input type="text" placeholder="email" name="email" autoComplete="off"
-                        value={this.state.email} onChange={this.onChange}/>
-                    <input type="text" placeholder="password" name="password" autoComplete="off"
-                        value={this.state.password} onChange={this.onChange}/>
-                    <input type="submit" value="log in"/>
-                </form>
+            <div className="login">
+                <div className="login-form">
+                    <h2 className="login-header">Login Form</h2>
+                    <form onSubmit={this.onSubmit} >
+                        <input type="text" className="login-input" placeholder="Email" name="email" autoComplete="off"
+                            value={this.state.email} onChange={this.onChange} />
+                        <input type="text" className="login-input" placeholder="Password" name="password" autoComplete="off"
+                            value={this.state.password} onChange={this.onChange} />
+                        <input type="submit" className="login-btn" value="Log in"/>
+                    </form>
+                </div>
             </div>
         )
     }
 }
 
-// mapStateToProps
 const mapStateToProps = state => ({
     auth: state.auth
 });

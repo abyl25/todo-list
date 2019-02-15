@@ -34,3 +34,8 @@ nav a:hover {
     text-shadow: 1px 1px 2px #58b4ff;
     padding: 0px 40px 0 20px;
 }
+
+.auth-link {
+    position: absolute;
+    right: 1px;
+}

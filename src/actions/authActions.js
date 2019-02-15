@@ -23,7 +23,7 @@ export const loginUser = (user) => dispatch => {
     })
 }
 
-export const logoutUser = (user) => dispatch => {
+export const logoutUser = () => dispatch => {
     localStorage.removeItem('token');
     setAuthToken(false);
     dispatch({

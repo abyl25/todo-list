@@ -18,12 +18,14 @@ function Navbar(props) {
                 <Link id="logo" to="/" >TodoList</Link>
                 <Link to="/me" >Dashboard</Link> 
                 <Link to="/about" >About</Link>
-                {isAuthenticated ? (<Link to="#" onClick={props.logoutUser}>Log out</Link>) : (        
-                    <React.Fragment>
-                        <Link to="/login" >Log in</Link> 
-                        <Link to="/signup" >Sign up</Link> 
-                    </React.Fragment>
-                )}  
+                <div className="auth-link">
+                    {isAuthenticated ? (<Link to="#" onClick={props.logoutUser}>Log out</Link>) : (        
+                        <React.Fragment>
+                            <Link to="/login" >Log in</Link> 
+                            <Link to="/signup" className="signup-link">Sign up</Link> 
+                        </React.Fragment>
+                    )}  
+                </div>
             </nav>
         </div>
     );

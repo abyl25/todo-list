@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_ITEMS, ADD_ITEM, DELETE_ITEM} from './types';
+import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, MARK_ITEM_DONE } from './types';
 
 export const getItems = () => dispatch => {
     axios.get('/api/items').then(res => {   
@@ -26,5 +26,12 @@ export const deleteItem = (id) => dispatch => {
             type: DELETE_ITEM,
             payload: id
         })
+    })
+}
+
+export const markItemDone = (id) => dispatch => {
+    dispatch({
+        type: MARK_ITEM_DONE,
+        payload: id
     })
 }

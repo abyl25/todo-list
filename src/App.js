@@ -41,9 +41,11 @@ class App extends Component {
             <Route exact path="/about" component={About}/>    
             <Switch>  
               <PrivateRoute exact path="/me" component={Dashboard}/>  
-            </Switch>                     
-            <Route exact path="/login" component={Login}/> 
-            <Route exact path="/signup" component={Signup}/>
+            </Switch>
+            <div className="auth-container">                   
+              <Route exact path="/login" component={Login}/> 
+              <Route exact path="/signup" component={Signup}/>
+            </div>  
           </div>
         </Router>
       </Provider>
