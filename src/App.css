@@ -4,6 +4,7 @@ html {
 }
 
 * {
+  box-sizing: border-box;
   font-family: 'Raleway', sans-serif;
   margin: 0;
   padding: 0;
@@ -111,19 +112,21 @@ html {
 }
 
 .auth-container {
-  padding: 0 1em;
-  margin: 30px;
+  width: 100%;
+  padding: 30px;
 }
 
-.login {
-  color: #fff;
-  margin: 0 200px;
-}
+/* .login { */
+  /* display: flex; */
+  /* color: #fff; */
+  /* margin: 0 15%; */
+/* } */
 
 .login-form {
-  margin: 0 200px;
+  color: #fff;
+  margin: 0 25%;
   padding: 5px;
-  /* width: 400px; */
+  width: 50%;
 }
 
 .login-header {
@@ -136,11 +139,11 @@ html {
   border: 1px solid #20a619;
   border-radius: 3px;
   /* width: 370px; */
-  width: 97%;
-  height: 30px;
+  width: 100%;
+  height: 40px;
   margin-top: 15px;
-  padding: 5px;
-  padding-bottom: 4px;
+  padding: 7px;
+  padding-bottom: 5px;
   color: #000;
   font-size: 17px;
   font-weight: lighter;
@@ -150,7 +153,7 @@ html {
   border-style: none;
   /* width: 100px; */
   width: 100%;
-  height: 38px;
+  height: 40px;
   margin-top: 20px;
   padding: 5px;
   border-radius: 3px;
@@ -160,4 +163,12 @@ html {
   font-weight: lighter;
   /* letter-spacing: 1px; */
   cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+  .login-form {
+    margin: 0 10%;
+    padding: 5px;
+    width: 80%;
+  }
 }

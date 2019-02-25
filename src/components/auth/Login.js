@@ -28,7 +28,7 @@ class Login extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        const emailPattern = "^\\S+[A-Za-z]+@.$";
+        // const emailPattern = "^\\S+[A-Za-z]+@.$";
         // const result = str.match(emailPattern);
 
         const user = {
