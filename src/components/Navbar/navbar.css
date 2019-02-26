@@ -56,6 +56,10 @@ nav::after {
     display: none;
 }
 
+.navbar-toggle {
+    display: block;
+}
+
 @media screen and (max-width: 600px) {
     nav li, .auth-link li {
         float: none;
@@ -68,10 +72,6 @@ nav::after {
     }
 
     #logo {
-        display: block;
-    }
-
-    .navbar-toggle {
         display: block;
     }
 

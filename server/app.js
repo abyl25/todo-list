@@ -15,7 +15,6 @@ app.use(bodyParser.json());
 app.use('/api/items', itemRoutes);
 app.use('/api/auth', authRoutes);
 
-
 // API Index Route
 app.get('/api', (req, res) => {
     console.log('REST API works');

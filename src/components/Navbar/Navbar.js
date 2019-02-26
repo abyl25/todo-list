@@ -12,24 +12,31 @@ function Navbar(props) {
     console.log("isAuthenticated: " + isAuthenticated);
 
     const onBarClick = () => {
+        console.log("bar clicked");
         const anchors = document.querySelectorAll("a");
-        // console.log(anchors);
-        anchors.forEach(a => a.classList.toggle('navbar-toggle'));
+        anchors.forEach(a => { 
+            // console.log(a);
+            a.classList.toggle('navbar-toggle')
+        });
     }
-    
+
+    const onLogOut = () => {
+        props.logoutUser();
+        onBarClick();
+    }
+
     return (
         <div>           
             <nav> 
-                <li><Link id="logo" to="/" >TodoList</Link></li>
-                {/* <i class="fas fa-bars"></i> */}
                 <i className="bar-icon fa fa-bars fa-2x" onClick={onBarClick}></i>
+                <li><Link id="logo" to="/" >TodoList</Link></li>
                 <li><Link to="/me" >Dashboard</Link></li>
                 <li><Link to="/about" >About</Link></li>
                 <div className="auth-link">
-                    {isAuthenticated ? (<li><Link to="#" onClick={props.logoutUser}>Log out</Link></li>) : (        
+                    {isAuthenticated ? (<li><Link to="#" onClick={onLogOut}>Log out</Link></li>) : (        
                         <React.Fragment>
                             <li><Link to="/login" >Log in</Link> </li>
-                            <li><Link to="/signup" className="signup-link">Sign up</Link> </li> 
+                            <li><Link to="/signup" >Sign up</Link> </li> 
                         </React.Fragment>
                     )}  
                 </div>

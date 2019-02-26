@@ -52,7 +52,7 @@ class Login extends Component {
                     <form onSubmit={this.onSubmit} >
                         <input type="text" className="login-input" placeholder="Email" name="email" autoComplete="off"
                             value={this.state.email} onChange={this.onChange} />
-                        <input type="text" className="login-input" placeholder="Password" name="password" autoComplete="off"
+                        <input type="password" className="login-input" placeholder="Password" name="password" autoComplete="off"
                             value={this.state.password} onChange={this.onChange} />
                         <input type="submit" className="login-btn" value="Log in"/>
                     </form>
